@@ -24,29 +24,17 @@ router.delete('/:id', async function(req, res) {
 
 router.post('/', async function(req, res) {
     try {
-        var Bus1 = [];
-        var Routes = [];
-        var ttls = [];
-        ttls.push(req.body.TotalSeats);
-
         let product = new products();
-        Routes.push({
-            Route1: req.body.Route1,
-            Route2: req.body.Route2,
-            AvgFair: req.body.AvgFair
-        })
-        Bus1.push({
-            Number: req.body.Number,
-            Class: req.body.Class,
-            SpecialOffer: req.body.SpecialOffer,
-            Wifi: req.body.Wifi,
-            TotalSeats: ttls,
-            Routes: Routes
-        });
 
-        product.Bus1 = req.body.Bus1;
         product.BusCompany = req.body.BusCompany;
-        product.Routes = req.body.Routes;
+        product.BusNumber = req.body.BusNumber;
+        product.Class = req.body.Class;
+        product.SpecialOffer = req.body.SpecialOffer;
+        product.Wifi = req.body.Wifi;
+        product.TotalSeats = req.body.TotalSeats;
+        product.Route1 = req.body.Route1;
+        product.Route2 = req.body.Route2;
+        product.AvgFair = req.body.AvgFair;
         await product.save();
         return res.send(product);
     } catch (err) {
@@ -57,24 +45,17 @@ router.post('/', async function(req, res) {
 router.put('/:id', async function(req, res) {
     try {
         var product = await products.findById(req.params.id);
-        var Bus1 = [];
-        var Routes = [];
-        var ttls = [];
-        ttls.push(req.body.TotalSeats);
-        Routes.push({
-            Route1: req.body.Route1,
-            Route2: req.body.Route2,
-            AvgFair: req.body.AvgFair
-        });
-        Bus1.push({
-            Number: req.body.Number,
-            Class: req.body.Class,
-            wifi: req.body.wifi,
-            TotalSeats: ttls,
-            Routes: Routes
-        });
         product.BusCompany = req.body.BusCompany;
-        product.Bus1 = req.body.Bus1;
+        product.BusNumber = req.body.BusNumber;
+        product.Class = req.body.Class;
+        product.SpecialOffer = req.body.SpecialOffer;
+        product.Wifi = req.body.Wifi;
+        product.TotalSeats = req.body.TotalSeats;
+        product.Route1 = req.body.Route1;
+        product.Route2 = req.body.Route2;
+        product.AvgFair = req.body.AvgFair;
+        product.BusCompany = req.body.BusCompany;
+        product.item = req.body.item;
         await product.save();
         return res.send(product);
     } catch (err) {
@@ -82,4 +63,8 @@ router.put('/:id', async function(req, res) {
     }
 });
 
+module.exports = router;
+module.exports = router;
+module.exports = router;
+module.exports = router;
 module.exports = router;

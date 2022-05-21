@@ -37,8 +37,7 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
-
-mongoose.connect("mongodb://localhost/TransportData", { useNewUrlParser: true })
+mongoose.connect("mongodb+srv://akashurrehman123:WgE7Wtk79FCL7QIN@cluster0.se4lf.mongodb.net/?retryWrites=true&w=majority", { useNewUrlParser: true })
     .then(() => console.log("Connected to MongoDB...."))
     .catch((error) => console.log(error.message));
 module.exports = app;
