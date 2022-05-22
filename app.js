@@ -4,11 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
+var cors = require('cors');
 var indexRouter = require('./routes/index');
 var Router = require('./routes/API/Transportrecord');
 
-var app = express();
 
+var app = express();
+app.use(cors());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
