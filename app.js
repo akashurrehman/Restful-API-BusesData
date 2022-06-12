@@ -6,9 +6,11 @@ var logger = require('morgan');
 const mongoose = require('mongoose');
 var cors = require('cors');
 var indexRouter = require('./routes/index');
-var Router = require('./routes/API/Transportrecord');
-
-
+var TransportRouter = require('./routes/API/Transportrecord');
+var CustomerRouter=require('./routes/API/CustomerData');
+var TouristRouter=require('./routes/API/TouristGuides');
+var users=require('./routes/API/users');
+var cities=require('./routes/API/Cities');
 var app = express();
 app.use(cors());
 // view engine setup
@@ -22,8 +24,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/API/Transportrecord', Router);
-
+app.use('/API/Transportrecord', TransportRouter);
+app.use('/API/CustomerData',CustomerRouter);
+app.use('/API/TouristGuides',TouristRouter)
+app.use('/API/users',users);
+app.use('/API/Cities',cities);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     next(createError(404));

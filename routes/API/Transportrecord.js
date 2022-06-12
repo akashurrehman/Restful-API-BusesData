@@ -1,14 +1,18 @@
 var express = require('express');
 var router = express.Router();
 var products = require('../../Model/BusRecord')
+var ValidateBusRecord=require('../../Middlewares/ValidateBusRecord')
+var Auth=require('../../Middlewares/auth')
+const Adminauth = require('../../Middlewares/admin');
+
     /* GET users listing. */
 
-router.get('/', async function(req, res) {
+router.get('/',async function(req, res) {
     var getproduct = await products.find();
     return res.send(getproduct);
 });
 
-router.get('/:id', async function(req, res) {
+router.get('/:id',async function(req, res) {
     try {
         var getproduct = await products.findById(req.params.id);
         return res.send(getproduct);
@@ -17,13 +21,14 @@ router.get('/:id', async function(req, res) {
     }
 });
 
-router.delete('/:id', async function(req, res) {
+router.delete('/:id',Auth,Adminauth, async function(req, res) {
     var getproduct = await products.findByIdAndDelete(req.params.id);
     return res.send(getproduct);
 });
 
-router.post('/', async function(req, res) {
+router.post('/',Auth,Adminauth,async function(req, res) {
     try {
+        console.log(req.user);
         let product = new products();
 
         product.BusCompany = req.body.BusCompany;
@@ -42,7 +47,7 @@ router.post('/', async function(req, res) {
     }
 });
 
-router.put('/:id', async function(req, res) {
+router.put('/:id',Auth,Adminauth, async function(req, res) {
     try {
         var product = await products.findById(req.params.id);
         product.BusCompany = req.body.BusCompany;
@@ -62,9 +67,7 @@ router.put('/:id', async function(req, res) {
         res.status(400).send("Cannot Update...");
     }
 });
+module.exports = router;
 
-module.exports = router;
-module.exports = router;
-module.exports = router;
-module.exports = router;
-module.exports = router;
+
+
